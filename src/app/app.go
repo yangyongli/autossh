@@ -19,9 +19,11 @@ var (
 
 func init() {
 	// 取执行文件所在目录下的config.json
-	dir, _ := os.Executable()
-	c = filepath.Dir(dir) + "/config.json"
-
+	//dir, _ := os.Executable()
+	// get genertor bin dir autossh file
+	dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+	//c = filepath.Dir(dir) + "/config.json"
+	c = dir + "/config.json"
 	flag.StringVar(&c, "c", c, "指定配置文件路径")
 	flag.StringVar(&c, "config", c, "指定配置文件路径")
 

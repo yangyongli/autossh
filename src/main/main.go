@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	Version = "unknown"
-	Build   = "unknown"
+	Version = "1.0"
+	Build   = "1.0"
 )
 
 func main() {

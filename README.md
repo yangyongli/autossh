@@ -1,3 +1,5 @@
+## 感谢
+感谢islenbo分享，在此基础上学习
 # autossh
 
 一个SSH远程客户端，可一键登录远程服务器，主要用来弥补Mac/Linux Terminal SSH无法保存密码的不足。
@@ -5,7 +7,7 @@
 ![演示](https://raw.githubusercontent.com/islenbo/autossh/8456ea1e8cb82541018a4133227a257c70199e40/docs/images/ezgif-5-42b5117192fc.gif)
 
 ## Wiki
-[Wiki](https://github.com/islenbo/autossh/wiki)
+[Wiki](https://github.com/yangyongli/autossh/wiki)
 
 ## 功能说明
 - SSH 快速登录
