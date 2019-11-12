@@ -6,6 +6,7 @@ import (
 )
 
 func showServers(configFile string) {
+
 	cfg, err := loadConfig(configFile)
 	if err != nil {
 		utils.Errorln(err)
@@ -22,7 +23,6 @@ func showServers(configFile string) {
 		if !loop {
 			break
 		}
-
 		if reload {
 			cfg, err = loadConfig(configFile)
 		}
