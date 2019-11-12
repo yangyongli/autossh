@@ -14,6 +14,7 @@ type Operation struct {
 
 var menuMap [][]Operation
 
+// operations data like ---key:add ,value:{Key: "add", Label: "添加", Process: handleAdd}---
 var operations = make(map[string]Operation)
 
 func init() {

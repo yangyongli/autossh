@@ -5,3 +5,5 @@ releases/
 test.go
 app.log
 vendor
+bin/
+.gitignore

@@ -122,7 +122,7 @@ func (cfg *Config) createServerIndex() {
 	}
 }
 
-// 保存配置文件
+// 保存配置文件（将新的数据保存）
 func (cfg *Config) saveConfig(backup bool) error {
 	b, err := json.Marshal(cfg)
 	if err != nil {
@@ -134,7 +134,7 @@ func (cfg *Config) saveConfig(backup bool) error {
 	if err != nil {
 		return err
 	}
-
+	//是否备份旧的配置文件
 	if backup {
 		err = cfg.backup()
 		if err != nil {

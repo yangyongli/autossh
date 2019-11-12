@@ -206,9 +206,10 @@ func (server *Server) Connect() error {
 	if err != nil {
 		return errors.New("执行Shell出错:" + err.Error())
 	}
-
+	//等待远程退出
 	_ = session.Wait()
 	//if err != nil {
+	//	//如果远程不发送exit退出，则得到一个ExitMissingError
 	//	return errors.New("执行Wait出错:" + err.Error())
 	//}
 
@@ -358,12 +359,12 @@ func (server *Server) startKeepAliveLoop(session *ssh.Session) chan struct{} {
 	return terminate
 }
 
-// 监听终端窗口变化
+// 开启goroutine监听终端窗口变化
 func (server *Server) listenWindowChange(session *ssh.Session, fd int) {
 	go func() {
 		sigwinchCh := make(chan os.Signal, 1)
 		defer close(sigwinchCh)
-
+		//监听窗口变化信号（有变化sigwinchCh将得到数据）
 		signal.Notify(sigwinchCh, syscall.SIGWINCH)
 		termWidth, termHeight, err := terminal.GetSize(fd)
 		if err != nil {

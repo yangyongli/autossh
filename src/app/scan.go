@@ -41,8 +41,12 @@ func scanInput(cfg *Config) (loop bool, clear bool, reload bool) {
 			if err != nil {
 				utils.Logger.Error("server connect error ", err)
 				utils.Errorln(err)
+				//当执行远程shell出问题时返回 loop:false 主线程执行结束
+				return false, true, false
 			}
-			return false, true, false
+			//当执行远程shell正常exit时 loop:true 主线程执行contine，继续监听输入
+			return true, false, false
+			//return true, true, true
 		}
 	case InputCmdGroupPrefix:
 		{
@@ -65,6 +69,7 @@ func scanInput(cfg *Config) (loop bool, clear bool, reload bool) {
 
 // 检查输入
 func checkInput(cfg *Config) (cmd string, inputCmd int, extInfo interface{}) {
+
 	for {
 		ipt := ""
 		skipOpt := false
@@ -78,7 +83,7 @@ func checkInput(cfg *Config) (cmd string, inputCmd int, extInfo interface{}) {
 
 		ipts := strings.Split(ipt, " ")
 		cmd = ipts[0]
-
+		//当执行./autossh 时后有参数（./autossh 1）则跳过 InputCmdOpt类型命令
 		if !skipOpt {
 			if _, exists := operations[cmd]; exists {
 				inputCmd = InputCmdOpt
@@ -107,6 +112,5 @@ func checkInput(cfg *Config) (cmd string, inputCmd int, extInfo interface{}) {
 
 		utils.Errorln("输入有误，请重新输入")
 	}
-
 	return cmd, inputCmd, extInfo
 }
